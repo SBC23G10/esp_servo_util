@@ -16,6 +16,8 @@ Run `idf.py -p PORT flash monitor` to build, flash and monitor the project.
 
 (To exit the serial monitor, type ``Ctrl-]``.)
 
+## Basic servo-util usage
+
 ## Example Output
 
 ```text
@@ -31,6 +33,10 @@ I (66149) All_feature_servo_comm_test:
         Servo_comm_82: Sweep period (ms) = 500, Target rotation = 0.000000, Clockwise = false, Status = active 
 }
 ```
+## General testing
+
+For general testing you should pick one of the examples given in main/example_main_srcs putting it inside the main directory ../
+
 ## License
 
 The source code for the site is licensed under the MIT license, which you can find in the LICENSE file.
