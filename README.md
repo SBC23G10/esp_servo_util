@@ -3,7 +3,7 @@
 
 # ESP Servo Util Playground
 
-# Servo-util control over pwm USING ledc-lib
+### Servo-util control over pwm USING ledc-lib
 Simple abstraction layer that provides fully concurrent and atomic multi-servo operation control with ease
 
 ### Hardware Required
