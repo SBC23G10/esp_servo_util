@@ -18,7 +18,7 @@ Run `idf.py -p PORT flash monitor` to build, flash and monitor the project.
 
 ## Basic servo-util usage
 
-```c
+```c++
 extern "C"
 void app_main()
 {
@@ -50,8 +50,9 @@ void app_main()
 	// Test by simply assigning target_a random values between 0.00 - 179.99
 
         for (int i = 0; i < 10; i++) {
-                target_a.store((float)(rand() % 18000) / 100)
-		target_b.store((float)(rand() % 18000) / 100);;
+                target_a.store((float)(rand() % 18000) / 100);
+		target_b.store((float)(rand() % 18000) / 100);
+		usleep(3200000);
         }
 
 	// Simply turn off servo communication functionality
