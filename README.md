@@ -31,3 +31,6 @@ I (66149) All_feature_servo_comm_test:
         Servo_comm_82: Sweep period (ms) = 500, Target rotation = 0.000000, Clockwise = false, Status = active 
 }
 ```
+## License
+
+The source code for the site is licensed under the MIT license, which you can find in the LICENSE file.
