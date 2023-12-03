@@ -11,7 +11,7 @@
  */
 
 Servo_comm::Servo_comm():
-        id('0'),
+        	id('0'),
 		ROT_MAX_DEG(180),
 		SWEEP_PERIOD_MS(1500),
 
@@ -23,7 +23,7 @@ Servo_comm::Servo_comm():
 
 		duty_current((1<<15) * 500 / 20000),
 		rot_current(0.0f),
-        conn(LEDC_CHANNEL_0),
+        	conn(LEDC_CHANNEL_0),
 		dummy_target(std::atomic<float>(0.0f)),
 		end(0)
 {
@@ -42,10 +42,10 @@ Servo_comm::Servo_comm(
 		char REVERSED,
 			
 		char bits,
-        ledc_channel_t conn,
+		ledc_channel_t conn,
 		std::atomic<float>* target
 		) :
-        id(id),
+        	id(id),
 		ROT_MAX_DEG(ROT_MAX_DEG),
 		SWEEP_PERIOD_MS(SWEEP_PERIOD_MS),
 
@@ -57,7 +57,7 @@ Servo_comm::Servo_comm(
 
 		duty_current((1<<bits) * initial_duty / (DUTY_UPD_PERIOD_MS * 1000)),
 		rot_current(0.0f),
-        conn(conn),
+		conn(conn),
 		dummy_target(std::atomic<float>(0.0f)),
 		_target_(target),
 		end(0)
@@ -125,7 +125,7 @@ void Servo_comm::task()
 	uint32_t sleep_period_us = DUTY_UPD_PERIOD_MS * 1000;
 	uint32_t rest_period_us = REST_PERIOD_MS * 1000;
 	float target_rc;
-    uint32_t nop = 0;
+	uint32_t nop = 0;
 	
 	// Loop awaiting for end == 1 to exit
 
@@ -152,8 +152,7 @@ void Servo_comm::task()
 		 */
 
 		target_rc = target.load(); if(nop){}
-
-        target_rc = REVERSED ? 180.0f-target_rc:target_rc;
+		target_rc = REVERSED ? 180.0f-target_rc:target_rc;
 		if (fabs(target_rc - rot_current) < 5e-1 || target_rc > 180.0f)
 			continue;
 
@@ -233,7 +232,7 @@ std::vector<std::tuple<Servo_comm&, std::thread>>
 	servo_thread_init(std::initializer_list<Servo_comm*> list)
 {
 	std::vector<std::tuple<Servo_comm&, std::thread>> servo_thread_tup;
-    for (auto s_t_ : list)
+	for (auto s_t_ : list)
 		servo_thread_tup.push_back({*s_t_, std::thread(std::ref(*s_t_))});
 	return servo_thread_tup;
 }
@@ -243,7 +242,7 @@ void turn_off_servo_control(std::vector<std::tuple<Servo_comm&, std::thread>>& s
 	for (int i=0; i<servo_bind.size(); i++) {
 		std::get<0>(servo_bind.at(i)).end_now();
 		if (std::get<1>(servo_bind.at(i)).joinable())
-            std::get<1>(servo_bind.at(i)).join();
+			std::get<1>(servo_bind.at(i)).join();
 	}
 	// you can add "return bool " <-> "return joined_count == servo_bind.size();"
 }
