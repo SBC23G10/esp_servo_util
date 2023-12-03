@@ -18,6 +18,44 @@ Run `idf.py -p PORT flash monitor` to build, flash and monitor the project.
 
 ## Basic servo-util usage
 
+```c
+extern "C"
+void app_main()
+{
+        // Set precision bits
+        int bits = 15;
+
+        // Min duty value in uSecs
+	int minValue = 500;
+
+        // Calculate duty value given precision and 20000 uSecs period (50Hz)
+	uint32_t duty = (1<<bits) * minValue / 20000;
+
+	// Same timer for all servos
+
+	servo_comm_ledc_channel_prepare(duty, 15, 50, LEDC_CHANNEL_0, LEDC_TIMER_0, 16);
+
+        // Declare an "to be referenced" atomic value
+
+	std::atomic<float> target_a = 0;
+
+        // Declare servo given readings reference value
+
+	Servo_comm servo_a(0, 180, 500, 3500 - 500, 500, 20, 500, 0, bits, LEDC_CHANNEL_0, &target_a);
+
+	auto servo_bind = servo_thread_init({&servo_a/* , ... */});
+
+        for (int i = 0; i < 10; i++) {
+                target_a.store((float)(rand() % 18000) / 100);
+        }
+        turn_off_servo_control(servo_bind);
+	// Can be easily restored keeping last duties (useful for sleep-awake usages that keep up memory)
+	restore_servo_control(servo_bind);
+
+	turn_off_servo_control(servo_bind);
+}
+```
+
 ## Example Output
 
 ```text
