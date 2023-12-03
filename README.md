@@ -38,18 +38,28 @@ void app_main()
         // Declare an "to be referenced" atomic value
 
 	std::atomic<float> target_a = 0;
+	std::atomic<float> target_b = 0;
 
         // Declare servo given readings reference value
 
 	Servo_comm servo_a(0, 180, 500, 3500 - 500, 500, 20, 500, 0, bits, LEDC_CHANNEL_0, &target_a);
+	Servo_comm servo_b(1, 180, 1750, 3500 - 500, 500, 20, 500, 0, bits, LEDC_CHANNEL_1, &target_b);
 
-	auto servo_bind = servo_thread_init({&servo_a/* , ... */});
+	auto servo_bind = servo_thread_init({&servo_a, &servo_b /*, ... */});
+
+	// Test by simply assigning target_a random values between 0.00 - 179.99
 
         for (int i = 0; i < 10; i++) {
-                target_a.store((float)(rand() % 18000) / 100);
+                target_a.store((float)(rand() % 18000) / 100)
+		target_b.store((float)(rand() % 18000) / 100);;
         }
-        turn_off_servo_control(servo_bind);
+
+	// Simply turn off servo communication functionality
+
+	turn_off_servo_control(servo_bind);
+
 	// Can be easily restored keeping last duties (useful for sleep-awake usages that keep up memory)
+
 	restore_servo_control(servo_bind);
 
 	turn_off_servo_control(servo_bind);
