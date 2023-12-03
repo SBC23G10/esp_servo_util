@@ -19,10 +19,10 @@ void app_main()
 	 * Take into account that deterministic behaviour will
 	 * occur if the time keeps always the same on every reboot
 	 */
-    srand(time(NULL));
+	srand(time(NULL));
 	int i;
 	// bit resolution the higher the best precision/more time implied
-    int bits = 15;
+	int bits = 15;
 	// duty minimun value in uSecs
 	int minValue = 500;
 
@@ -58,7 +58,7 @@ void app_main()
 			500,		// Rest period between target change in ms
 			0,			// 1 - Clockwise / 0 - CounterClockwise
 			bits,		// Resolution bits
-            LEDC_CHANNEL_0,
+			LEDC_CHANNEL_0,
 			&target_a	// Target referenced value
 			);
 
@@ -85,7 +85,7 @@ void app_main()
 
 	// This will simulate a general purpose servo operation for 10 iterations
 
-	for(i = 0; i < 10; i++) {
+	for (i = 0; i < 10; i++) {
 		target_a.store((float)(rand() % 18000) / 100);
 		target_b.store((float)(rand() % 18000) / 100);
 		target_reset.store((int)target_reset.load() == 180 ? 0.0f:180.0f);
@@ -98,8 +98,8 @@ void app_main()
 		 */
 
 		ESP_LOGI(tag, "\n(Readings) { \n\t%s\n\t%s\n\t%s\n}", a.info().c_str(),
-														b.info().c_str(),
-														reset.info().c_str());
+											b.info().c_str(),
+											reset.info().c_str());
 		usleep(3200000);
 	}
 
@@ -110,13 +110,13 @@ void app_main()
 	turn_off_servo_control(servo_bind);
 
 	// Proof that even updating values for 10 iterations no servo will be updated (canceled-status)
-	for(i = 0; i < 10; i++) {
+	for (i = 0; i < 10; i++) {
 		target_a.store((float)(rand() % 18000) / 100);
 		target_b.store((float)(rand() % 18000) / 100);
 		
 		ESP_LOGI(tag, "\n(Readings) { \n\t%s\n\t%s\n\t%s\n}", a.info().c_str(),
-														b.info().c_str(),
-														reset.info().c_str());
+									b.info().c_str(),
+									reset.info().c_str());
 		usleep(3200000);
 	}
 	
@@ -126,13 +126,13 @@ void app_main()
 	 */
 	restore_servo_control(servo_bind);
 
-	for(i = 0; i < 10; i++) {
+	for (i = 0; i < 10; i++) {
 		target_a.store((float)(rand() % 18000) / 100);
 		target_b.store((float)(rand() % 18000) / 100);
 		
 		ESP_LOGI(tag, "\n(Readings) { \n\t%s\n\t%s\n\t%s\n}", a.info().c_str(),
-														b.info().c_str(),
-														reset.info().c_str());
+									b.info().c_str(),
+									reset.info().c_str());
 		usleep(3200000);
 	}
 
