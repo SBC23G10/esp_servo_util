@@ -22,6 +22,7 @@ Run `idf.py -p PORT flash monitor` to build, flash and monitor the project.
 extern "C"
 void app_main()
 {
+    srand(time(NULL));
         // Set precision bits
         int bits = 15;
 
@@ -34,7 +35,7 @@ void app_main()
 	// Same timer for all servos
 
 	servo_comm_ledc_channel_prepare(duty, 15, 50, LEDC_CHANNEL_0, LEDC_TIMER_0, 16);
-
+  servo_comm_ledc_channel_prepare(duty, 15, 50, LEDC_CHANNEL_0, LEDC_TIMER_0, 17);
         // Declare an "to be referenced" atomic value
 
 	std::atomic<float> target_a = 0;
