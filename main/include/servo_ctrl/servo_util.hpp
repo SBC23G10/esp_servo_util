@@ -2,7 +2,7 @@
 #define __SERVO_UTIL__
 
 /*
- *	Servo-util control over pwm USING ledc-lib
+ *  Servo-util control over pwm USING ledc-lib
  *  Simple abstraction layer that provides fully
  *  concurrent and atomic
  *  multi-servo operation control with ease
@@ -51,7 +51,7 @@ class Servo_comm {
 			char REVERSED,
 			
 			char bits,
-            ledc_channel_t conn,
+			ledc_channel_t conn,
 
 			/* 
 			 * It can be hacky to reach float precision, in this case with some inner
@@ -94,7 +94,7 @@ class Servo_comm {
 
 	uint32_t duty_current;
 	float rot_current;
-    ledc_channel_t conn;
+    	ledc_channel_t conn;
 	
 	// Just to keep semantics dummy_target also as an atomic var
 
