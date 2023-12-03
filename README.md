@@ -1,7 +1,7 @@
 | Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C6 | ESP32-H2 | ESP32-S2 | ESP32-S3 |
 | ----------------- | ----- | -------- | -------- | -------- | -------- | -------- | -------- |
 
-# ESP Servo Util Playground
+# ESP-32 Servo Util Playground
 
 ### Servo-util control over pwm USING ledc-lib
 Simple abstraction layer that provides fully concurrent and atomic multi-servo operation control with ease
