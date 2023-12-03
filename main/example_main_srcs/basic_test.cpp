@@ -21,12 +21,11 @@ void app_main()
 {
 	/*
 	 * srand(time(NULL)) NOTE
-	 * Take into account that deterministic behaviour can
+	 * Take into account that deterministic behaviour may
 	 * occur if the time keeps always the same on every reboot
 	 */
-
-    srand(time(NULL)); 
-    int bits = 15;
+	srand(time(NULL)); 
+	int bits = 15;
 	int minValue = 500;
 	uint32_t duty = (1<<bits) * minValue / 20000;
 
@@ -57,8 +56,8 @@ void app_main()
 		target_b.store((float)(rand() % 18000) / 100);
 		target_c.store((float)(rand() % 18000) / 100);
 		ESP_LOGI(tag, "\n(Readings) { \n\t%s\n\t%s\n\t%s\n}", servo_a.info().c_str(),
-														servo_b.info().c_str(),
-														servo_c.info().c_str());
+									servo_b.info().c_str(),
+									servo_c.info().c_str());
 		usleep(3200000);
 	}
 	turn_off_servo_control(servo_bind);
