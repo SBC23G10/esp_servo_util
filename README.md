@@ -1,22 +1,20 @@
 | Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C6 | ESP32-H2 | ESP32-S2 | ESP32-S3 |
 | ----------------- | ----- | -------- | -------- | -------- | -------- | -------- | -------- |
 
-# Servo Playground
+# ESP Servo Util Playground
+
+Servo-util control over pwm USING ledc-lib
+Simple abstraction layer that provides fully concurrent and atomic multi-servo operation control with ease
 
 ### Hardware Required
 
-* A USB cable for Power supply and programming
 * Any common servo
-
-See [Development Boards](https://www.espressif.com/en/products/devkits) for more information about it.
 
 ### Build and Flash
 
 Run `idf.py -p PORT flash monitor` to build, flash and monitor the project.
 
 (To exit the serial monitor, type ``Ctrl-]``.)
-
-See the [Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/index.html) for full steps to configure and use ESP-IDF to build projects.
 
 ## Example Output
 
