@@ -35,9 +35,9 @@ void app_main()
 	servo_comm_ledc_channel_prepare(duty, 15, 50, LEDC_CHANNEL_1, LEDC_TIMER_0, 17);
 	servo_comm_ledc_channel_prepare(duty, 15, 50, LEDC_CHANNEL_2, LEDC_TIMER_0, 4);
 
-	std::atomic<float> target_a = 0;
-	std::atomic<float> target_b = 0;
-	std::atomic<float> target_c = 0;
+	std::atomic<float> target_a(0);
+	std::atomic<float> target_b(0);
+	std::atomic<float> target_c(0);
 
 	Servo_comm servo_a(0, 180, 500, 3500 - 500, 500, 20, 500, 0, bits, LEDC_CHANNEL_0, &target_a);
 	Servo_comm servo_b(1, 180, 1750, 3500 - 500, 500, 20, 500, 0, bits, LEDC_CHANNEL_1, &target_b);
