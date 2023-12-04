@@ -30,9 +30,9 @@ void app_main()
 	
 	// Values that will be referenced by every servo_comm
 	
-	std::atomic<float> target_a = 0;
-	std::atomic<float> target_b = 0;
-	std::atomic<float> target_reset = 0;
+	std::atomic<float> target_a(0);
+	std::atomic<float> target_b(0);
+	std::atomic<float> target_reset(0);
 
 	// Prepare pwm (using ledc-lib) for each target servo
 
