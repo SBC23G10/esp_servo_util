@@ -152,8 +152,8 @@ void Servo_comm::task()
 		 */
 
 		target_rc = target.load(); if(nop){}
-		target_rc = REVERSED ? 180.0f-target_rc:target_rc;
-		if (fabs(target_rc - rot_current) < 5e-1 || target_rc > 180.0f)
+		target_rc = REVERSED ? (float)ROT_MAX_DEG-target_rc:target_rc;
+		if (fabs(target_rc - rot_current) < 5e-1 || target_rc > (uint32_t)ROT_MAX_DEG)
 			continue;
 
 		rot_relat = (float)(target_rc - rot_current) / ROT_MAX_DEG;
